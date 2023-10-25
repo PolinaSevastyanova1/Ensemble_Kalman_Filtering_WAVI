@@ -61,8 +61,7 @@ initial_conditions = InitialConditions(initial_thickness = h)
 #solver parameters
 #
 maxiter_picard = 3
-#parallel_spec = SharedMemorySpec(ngridsx=2,ngridsy=1,overlap=1,damping=0.0,nite
-rations=1)
+#parallel_spec = SharedMemorySpec(ngridsx=2,ngridsy=1,overlap=1,damping=0.0,niterations=1)
 parallel_spec = BasicParallelSpec()
 solver_params = SolverParams(maxiter_picard = maxiter_picard)
 
@@ -110,8 +109,7 @@ pc_min = -600.0 #pyclocline center limits within internal variability only
 pw     = 400.0
 rf_threshold = 2.0 #random forcing threshold for pc max/min
 
-idealized_anthro_melt_rate = IdealizedAnthroMeltRate(bump_amplitude = bump_ampli
-tude,
+idealized_anthro_melt_rate = IdealizedAnthroMeltRate(bump_amplitude = bump_amplitude,
 bump_width = bump_width,
 bump_time = bump_time,
 per_century_trend = per_century_trend,
@@ -135,8 +133,7 @@ model = Model(grid = grid,
           parallel_spec = parallel_spec,
           melt_rate = idealized_anthro_melt_rate);
 
-initial_model = deepcopy(model) #make a deepcopy so that we can assess the initi
-al vaf
+initial_model = deepcopy(model) #make a deepcopy so that we can assess the initial vaf
 update_state!(initial_model)
 
 #
