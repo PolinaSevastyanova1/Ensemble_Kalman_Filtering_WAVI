@@ -1,13 +1,4 @@
-# Now, we define a model which generates a sinusoid given parameters ``\theta``: an
-# amplitude and a vertical shift. The model adds a random phase shift upon evaluation.
 using WAVI, Interpolations
-
-
-# We then define ``G(\theta)``, which returns the observables of the sinusoid
-# given a parameter vector. These observables should be defined such that they
-# are informative about the parameters we wish to estimate. Here, the two
-# observables are the ``y`` range of the curve (which is informative about its
-# amplitude), as well as its mean (which is informative about its vertical shift).
 
 # The function parameter_to_data_map takes in the ensemble parameters and returns the observation associated with these parameters. In this case, it's the sea level rise at the end of the simulation
 function parameter_to_data_map(ensemble_parameters, member_path)
@@ -16,8 +7,6 @@ function parameter_to_data_map(ensemble_parameters, member_path)
 end
 
 function driver(ensemble_parameters, member_path)
-
-function driver()
 
 #
 #Grid and boundary conditions
