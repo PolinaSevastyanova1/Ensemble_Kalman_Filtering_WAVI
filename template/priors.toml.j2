@@ -1,9 +1,36 @@
 # Define the priors in computational space
 # there are many other examples in test/TOMLInterface/uq_test_parameters.toml
-
-[initial_thickness]
-prior = "VectorOfParameterized(repeat([Normal(500,50)],9))"
-constraint = "repeat([no_constraint()],9)"
+[weertman_c_prefactor]
+prior = "Parameterized(Normal(1,0.3))"
+constraint = "bounded_below(0.1)"
 description = """
-The prior for the initial thickness samples of the simulation is a Normal distribution with specified (mean,sd) 
+Prior for the Weertman C prefactor (premltiplies weertman C field). Bounded below by 0.1 (must be positive otherwise will fail)
+"""
+
+[glen_a_ref_prefactor]
+prior = "Parameterized(Normal(1,0.3))"
+constraint = "bounded_below(0.1)"
+description = """
+Prior for the glen a ref prefactor (premltiplies glen_a_ref field). Bounded below by 0.1 (must be positive otherwise sim will fail)
+"""
+
+[bump_amplitude]
+prior = "Parameterized(Normal(200,100))"
+constraint = "no_constraint()"
+description = """
+Prior for the amplitude of the 1945 bump. Unconstrained in general.
+"""
+
+[melt_rate_prefactor]
+prior = "Parameterized(Normal(5,5))"
+constraint = "bounded_below(0.1)"
+description = """
+Prior for the melt rate prefactor. V broad prior? Bounded below by 0.1
+"""
+
+[per_century_trend]
+prior = "Parameterized(Normal(100,100))"
+constraint = "no_constraint()"
+description = """
+Prior for the per century trend in forcing. Unconstrained and broad?
 """
