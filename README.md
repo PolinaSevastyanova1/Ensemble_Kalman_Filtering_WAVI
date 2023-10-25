@@ -22,6 +22,7 @@ pip install -r requirements.txt
 # Enter julia REPL
 julia
 ]
+activate .
 instantiate
 Ctrl+D
 Ctrl+D
