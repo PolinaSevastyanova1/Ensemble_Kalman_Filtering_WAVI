@@ -9,11 +9,13 @@ This example is derived from the code in the original library example for learni
 
 **This is still under development, but the workflow should run from end to end**
 
+(Note that below is for c shell. Have to manually install WAVI at the julia step.)
+
 ### Running
 
 ```
 python -m venv venv
-source venv/bin/activate
+source venv/bin/activate.csh
 pip install --upgrade setuptools pip
 pip install -r requirements.txt
 
