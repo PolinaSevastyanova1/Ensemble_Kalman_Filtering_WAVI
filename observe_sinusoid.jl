@@ -8,13 +8,13 @@ using WAVI, Interpolations
 # are informative about the parameters we wish to estimate. Here, the two
 # observables are the ``y`` range of the curve (which is informative about its
 # amplitude), as well as its mean (which is informative about its vertical shift).
-function parameter_to_data_map(ensemble_parameters)
-    simulation = driver(ensemble_parameters)
+function parameter_to_data_map(ensemble_parameters, member_path)
+    simulation = driver(ensemble_parameters, member_path)
     surface_elevation = simulation.model.fields.gh.s[:]
     return surface_elevation
 end
 
-function driver(ensemble_parameters)
+function driver(ensemble_parameters, member_path)
 
     #
     #Grid and boundary conditions
@@ -104,8 +104,26 @@ function driver(ensemble_parameters)
     #
     # assemble the simulation
     #
+    outputs = (h = model.fields.gh.h,
+           u = model.fields.gh.u,
+           v = model.fields.gh.v,
+           b = model.fields.gh.b,
+           s = model.fields.gh.s,
+               a = model.fields.gh.accumulation,
+           grfrac = model.fields.gh.grounded_fraction,
+           m = model.fields.gh.basal_melt)
+
+    output_freq = 5.0
+    output_path = member_path
+output_params = OutputParams(outputs = outputs,
+                            output_freq = output_freq,
+                            output_format = "mat",
+                            output_start = true,
+			    output_path = output_path)
+    
     simulation = Simulation(model = model, 
-                            timestepping_params = timestepping_params)
+                            timestepping_params = timestepping_params,
+			    output_params = output_params)
                     
     #
     #perform the simulation

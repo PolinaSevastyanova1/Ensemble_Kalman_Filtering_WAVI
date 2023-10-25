@@ -26,11 +26,11 @@ function main()
 
     # create noise
     Γ = 1.0 * I
-    dim_output = length(parameter_to_data_map(theta_true)) #just to get size here
+    dim_output = length(parameter_to_data_map(theta_true,data_path)) #just to get size here
     noise_dist = MvNormal(zeros(dim_output), Γ)
 
     # evaluate map with noise to create data
-    y = parameter_to_data_map(theta_true) .+ rand(rng_model, noise_dist)
+    y = parameter_to_data_map(theta_true,data_path) .+ rand(rng_model, noise_dist)
 
     # save
     @save data_path y Γ rng_model

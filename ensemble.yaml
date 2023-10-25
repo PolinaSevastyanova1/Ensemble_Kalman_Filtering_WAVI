@@ -19,9 +19,9 @@ ensemble:
     - ENVS.j2
     email:        someone@example.com
     job_file:     run_computer_model.sh
-    cluster:      short
+    cluster:      medium
     nodes:        1
-    ntasks:       8
+    ntasks:       1
     length:       00:30:00
     maxruns:      10
     maxjobs:      10

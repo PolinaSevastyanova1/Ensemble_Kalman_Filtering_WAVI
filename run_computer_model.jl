@@ -34,7 +34,7 @@ function main()
 
     # evaluate map with noise to create data
     #model_output = parameter_to_data_map(params, rng = rng_model)
-    model_output = parameter_to_data_map(params)
+    model_output = parameter_to_data_map(params,member_path)
 
     output_path = joinpath(member_path, "output.jld2")
     @save output_path model_output
