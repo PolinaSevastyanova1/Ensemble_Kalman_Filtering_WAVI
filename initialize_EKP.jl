@@ -18,7 +18,7 @@ function main()
 
     # We construct the prior from file
     param_dict = TOML.parsefile(toml_path)
-    names = ["initial_thickness"]
+    names = ["weertman_c_prefactor", "glen_a_ref_prefactor", "bump_amplitude", "melt_rate_prefactor", "per_century_trend"]
     prior_vec = [get_parameter_distribution(param_dict, n) for n in names]
     prior = combine_distributions(prior_vec)
 
