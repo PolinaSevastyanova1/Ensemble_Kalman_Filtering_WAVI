@@ -46,14 +46,14 @@ grid = Grid(nx = nx,
 #Bed
 #
 bathy=Array{Float64}(undef,nx,ny);
-read!("bathy.bin",bathy)
+read!(joinpath(dirname(@__FILE__), "input_data/bathy.bin"),bathy)
 bathy.=ntoh.(bathy)
 
 #
 # initial conditions
 #
 h=Array{Float64}(undef,nx,ny);
-read!("initial_thickness.bin",h)
+read!(joinpath(dirname(@__FILE__), "input_data/initial_thickness.bin"),h)
 h.=ntoh.(h)
 initial_conditions = InitialConditions(initial_thickness = h)
 
@@ -69,7 +69,7 @@ solver_params = SolverParams(maxiter_picard = maxiter_picard)
 #Physical parameters
 #
 accumulation =Array{Float64}(undef,nx,ny);
-read!("accumulation.bin",accumulation)
+read!(joinpath(dirname(@__FILE__), "input_data/accumulation.bin"),accumulation)
 accumulation.=ntoh.(accumulation)
 
 weertman_c = 368.0
@@ -79,7 +79,7 @@ weertman_c = weertman_c*weertman_c_prefactor
 
 glen_a_ref_prefactor = ensemble_parameters["glen_a_ref_prefactor"]
 glen_a_ref =Array{Float64}(undef,nx,ny);
-read!("glen_a_ref.bin",glen_a_ref)
+read!(joinpath(dirname(@__FILE__), "input_data/glen_a_ref.bin"),glen_a_ref)
 glen_a_ref.=ntoh.(glen_a_ref)
 glen_a_ref = glen_a_ref_prefactor .* glen_a_ref
 
