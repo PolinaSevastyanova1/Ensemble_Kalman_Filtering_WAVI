@@ -96,7 +96,7 @@ params = Params(accumulation_rate = accumulation,
 bump_amplitude      = ensemble_parameters["bump_amplitude"]
 melt_rate_prefactor = ensemble_parameters["melt_rate_prefactor"]
 per_century_trend   = ensemble_parameters["per_century_trend"]
-random_seed         = 1
+random_seed         = 2
 
 # fixed comonents
 

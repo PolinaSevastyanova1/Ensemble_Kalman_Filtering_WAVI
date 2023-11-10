@@ -30,7 +30,7 @@ function main()
     dim_output = 1
     noise_dist = MvNormal(zeros(dim_output), Γ)
     
-   observed_slr = 4.5
+   observed_slr = 4.0
 
     # evaluate map with noise to create data
     # y = parameter_to_data_map(theta_true,data_path) .+ rand(rng_model, noise_dist) 
