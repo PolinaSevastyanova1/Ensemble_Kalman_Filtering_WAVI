@@ -1,9 +1,21 @@
-using WAVI, Interpolations
+using WAVI, Interpolations, JLD2
 
 # The function parameter_to_data_map takes in the ensemble parameters and returns the observation associated with these parameters. In this case, it's the sea level rise at the end of the simulation
 function parameter_to_data_map(ensemble_parameters, member_path)
-    slr = driver(ensemble_parameters, member_path)
-    return slr
+    driver(ensemble_parameters, member_path)
+
+    #specify the paths of the output files
+    paths = ["outfile0000002850.mat", "outfile0000002900.mat", "outfile0000002950.mat", "outfile0000003000.mat"]; #these must match output times
+    ice_mass = zeros(1,length(paths)) 
+    dx = 2.0e3
+    dy = 2.0e3
+    
+    for i = 1:length(paths)
+       data = load(member_path*"/"*paths[i])
+       ice_mass[i] = sum(sum(data["h"])) .* dx .* dy/1e12
+    end 
+ 
+    return ice_mass
 end
 
 function driver(ensemble_parameters, member_path)
@@ -96,7 +108,7 @@ params = Params(accumulation_rate = accumulation,
 bump_amplitude      = ensemble_parameters["bump_amplitude"]
 melt_rate_prefactor = ensemble_parameters["melt_rate_prefactor"]
 per_century_trend   = ensemble_parameters["per_century_trend"]
-random_seed         = 2
+random_seed         = 3
 
 # fixed comonents
 
@@ -158,7 +170,7 @@ outputs = (h = model.fields.gh.h,
            v = model.fields.gh.v,
            b = model.fields.gh.b,
            s = model.fields.gh.s,
-               a = model.fields.gh.accumulation,
+           a = model.fields.gh.accumulation,
            grfrac = model.fields.gh.grounded_fraction,
            m = model.fields.gh.basal_melt)
 
@@ -182,30 +194,7 @@ simulation = Simulation(model = model,
 #
 run_simulation!(simulation)
 
-
-#
-# compute the associated slr
-#
-initial_h = initial_model.fields.gh.h
-initial_gr = initial_model.fields.gh.grounded_fraction
-bed = initial_model.fields.gh.b
-float_thick = abs.(1028/918 .* bed)
-dh = initial_h .- float_thick
-idx = initial_h .> float_thick
-dh[.!(idx)] .= 0
-initial_vaf = sum(sum(dh))*dx*dy
-
-final_h = simulation.model.fields.gh.h
-final_gr = simulation.model.fields.gh.grounded_fraction
-dh =  final_h .- float_thick
-idx = final_h .> float_thick
-dh[.!(idx)] .= 0
-final_vaf = sum(sum(dh))*dx*dy
-
-dvaf = initial_vaf - final_vaf
-slr = dvaf / 395/ 1e9
-
-return slr
+return nothing
 
 end
     

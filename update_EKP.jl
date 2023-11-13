@@ -18,7 +18,7 @@ function main()
     for member in 1:N_ensemble
         member_path = path_to_ensemble_member(output_dir, iteration, member)
         @load joinpath(member_path, "output.jld2") model_output
-        G_ens[:, member] .= model_output
+        G_ens[:, member] = model_output
     end
 
     # perform the update    
