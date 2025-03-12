@@ -3,7 +3,7 @@ ensemble:
   vars:
     out_dir:    ../output
     data_path:  truth.jld2
-    max_iters:  20
+    max_iters:  5
 
   pre_process:          []
   post_process: 
@@ -33,7 +33,7 @@ ensemble:
       pre_batch:
         - name:   check
           args:
-            cmd:  '../check_max.sh 20'
+            cmd:  '../check_max.sh 5'
             fail: True
         - name:   execute
           args: 
@@ -73,6 +73,7 @@ ensemble:
         - name:   execute
           args:
             cmd:  'julia --project ../update_EKP.jl output eki.jld2 `wc -m <REPEAT`'
+            log:  True
         - name:   execute
           args:
             cmd:  'echo >>REPEAT'

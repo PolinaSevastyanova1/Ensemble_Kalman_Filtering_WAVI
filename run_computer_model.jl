@@ -37,6 +37,7 @@ function main()
     model_output = parameter_to_data_map(params,member_path)
 
     output_path = joinpath(member_path, "output.jld2")
+    @info "Outputting to $output_path"
     @save output_path model_output
 
     #save rng
