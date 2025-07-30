@@ -1,12 +1,20 @@
-include("shared.jl") # packages
+#This is built for the sin example, and doesn't run for WAVI.
 
+include("shared.jl") # packages
+using Plots
 function main()
     eki_path = ARGS[1]
 
     # load current state 
     @load eki_path eki param_dict prior
+    #println("Fields in eki: ", fieldnames(typeof(eki)))
+    println()
+    println("param_dict: ", param_dict)
+    println()
+    println("prior: ", prior)
+
     N_ensemble = eki.N_ens
-    dim_output = size(eki.obs_mean)[1]
+    #dim_output = size(eki.obs_mean)[1]
 
     # align to observe_sinusoid.jl
     dt = 0.01
