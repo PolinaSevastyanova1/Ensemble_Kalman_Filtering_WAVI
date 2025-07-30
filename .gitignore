@@ -29,7 +29,7 @@ __pycache__/
 
 /ensemble/E*
 /ensemble/e*
-/ensemble/output/iteration*
+/ensemble/output/iteration_*/
 /ensemble/Project.toml
 /ensemble/REPEAT
 /log*
