@@ -10,7 +10,7 @@ function parameter_to_data_map(ensemble_parameters, member_path)
     dx = 2.0e3
     dy = 2.0e3
     
-    for i = 1:length(paths)
+    for i = (1:length(paths))
        data = load(member_path*"/"*paths[i])
        ice_mass[i] = sum(sum(data["h"])) .* dx .* dy/1e12
     end 
@@ -58,15 +58,13 @@ grid = Grid(nx = nx,
 #Bed
 #
 bathy=Array{Float64}(undef,nx,ny);
-read!(joinpath(dirname(@__FILE__), "input_data/bathy.bin"),bathy)
-bathy.=ntoh.(bathy)
+read!(joinpath(dirname(@__FILE__), "exp_input_data/bathy.bin"),bathy)
 
 #
 # initial conditions
 #
 h=Array{Float64}(undef,nx,ny);
-read!(joinpath(dirname(@__FILE__), "input_data/initial_thickness.bin"),h)
-h.=ntoh.(h)
+read!(joinpath(dirname(@__FILE__), "exp_input_data/initial_thickness.bin"),h)
 initial_conditions = InitialConditions(initial_thickness = h)
 
 #
@@ -81,8 +79,7 @@ solver_params = SolverParams(maxiter_picard = maxiter_picard)
 #Physical parameters
 #
 accumulation =Array{Float64}(undef,nx,ny);
-read!(joinpath(dirname(@__FILE__), "input_data/accumulation.bin"),accumulation)
-accumulation.=ntoh.(accumulation)
+read!(joinpath(dirname(@__FILE__), "exp_input_data/accumulation.bin"),accumulation)
 
 weertman_c = 368.0
 weertman_c_prefactor = ensemble_parameters["weertman_c_prefactor"]
@@ -91,8 +88,7 @@ weertman_c = weertman_c*weertman_c_prefactor
 
 glen_a_ref_prefactor = ensemble_parameters["glen_a_ref_prefactor"]
 glen_a_ref =Array{Float64}(undef,nx,ny);
-read!(joinpath(dirname(@__FILE__), "input_data/glen_a_ref.bin"),glen_a_ref)
-glen_a_ref.=ntoh.(glen_a_ref)
+read!(joinpath(dirname(@__FILE__), "exp_input_data/glen_a_ref.bin"),glen_a_ref)
 glen_a_ref = glen_a_ref_prefactor .* glen_a_ref
 
 params = Params(accumulation_rate = accumulation,
@@ -108,9 +104,9 @@ params = Params(accumulation_rate = accumulation,
 bump_amplitude      = ensemble_parameters["bump_amplitude"]
 melt_rate_prefactor = ensemble_parameters["melt_rate_prefactor"]
 per_century_trend   = ensemble_parameters["per_century_trend"]
-random_seed         = 3
+random_seed         = 2
 
-# fixed comonents
+# fixed comPonents
 
 end_time = 300. # end of the simulation is 2000
 bump_width = 2.5
@@ -153,7 +149,6 @@ update_state!(initial_model)
 #
 niter0 = 0
 dt = 0.1
-#end_time = 1000.
 chkpt_freq = 1000.0
 pchkpt_freq = 1000.0
 timestepping_params = TimesteppingParams(niter0 = niter0,
@@ -198,3 +193,4 @@ return nothing
 
 end
     
+

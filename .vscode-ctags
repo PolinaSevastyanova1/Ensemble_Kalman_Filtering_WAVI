@@ -1,0 +1,24 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+DO_ESCAPE	venv/lib/python3.12/site-packages/markupsafe/_speedups.c	18;"	d	file:
+DO_ESCAPE	venv/lib64/python3.12/site-packages/markupsafe/_speedups.c	18;"	d	file:
+GET_DELTA	venv/lib/python3.12/site-packages/markupsafe/_speedups.c	3;"	d	file:
+GET_DELTA	venv/lib64/python3.12/site-packages/markupsafe/_speedups.c	3;"	d	file:
+PyInit__speedups	venv/lib/python3.12/site-packages/markupsafe/_speedups.c	/^PyInit__speedups(void)$/;"	f
+PyInit__speedups	venv/lib64/python3.12/site-packages/markupsafe/_speedups.c	/^PyInit__speedups(void)$/;"	f
+escape_unicode	venv/lib/python3.12/site-packages/markupsafe/_speedups.c	/^escape_unicode(PyObject *self, PyObject *s)$/;"	f	file:
+escape_unicode	venv/lib64/python3.12/site-packages/markupsafe/_speedups.c	/^escape_unicode(PyObject *self, PyObject *s)$/;"	f	file:
+escape_unicode_kind1	venv/lib/python3.12/site-packages/markupsafe/_speedups.c	/^escape_unicode_kind1(PyUnicodeObject *in)$/;"	f	file:
+escape_unicode_kind1	venv/lib64/python3.12/site-packages/markupsafe/_speedups.c	/^escape_unicode_kind1(PyUnicodeObject *in)$/;"	f	file:
+escape_unicode_kind2	venv/lib/python3.12/site-packages/markupsafe/_speedups.c	/^escape_unicode_kind2(PyUnicodeObject *in)$/;"	f	file:
+escape_unicode_kind2	venv/lib64/python3.12/site-packages/markupsafe/_speedups.c	/^escape_unicode_kind2(PyUnicodeObject *in)$/;"	f	file:
+escape_unicode_kind4	venv/lib/python3.12/site-packages/markupsafe/_speedups.c	/^escape_unicode_kind4(PyUnicodeObject *in)$/;"	f	file:
+escape_unicode_kind4	venv/lib64/python3.12/site-packages/markupsafe/_speedups.c	/^escape_unicode_kind4(PyUnicodeObject *in)$/;"	f	file:
+module_definition	venv/lib/python3.12/site-packages/markupsafe/_speedups.c	/^static struct PyModuleDef module_definition = {$/;"	v	typeref:struct:PyModuleDef	file:
+module_definition	venv/lib64/python3.12/site-packages/markupsafe/_speedups.c	/^static struct PyModuleDef module_definition = {$/;"	v	typeref:struct:PyModuleDef	file:
+module_methods	venv/lib/python3.12/site-packages/markupsafe/_speedups.c	/^static PyMethodDef module_methods[] = {$/;"	v	file:
+module_methods	venv/lib64/python3.12/site-packages/markupsafe/_speedups.c	/^static PyMethodDef module_methods[] = {$/;"	v	file:

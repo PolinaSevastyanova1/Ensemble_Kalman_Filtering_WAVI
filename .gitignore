@@ -27,5 +27,9 @@ Manifest.toml
 *.pyc
 __pycache__/
 
-/ensemble/
+/ensemble/E*
+/ensemble/e*
 /log*
+
+# temporarily ignore plots and ouputs
+ensemble/
