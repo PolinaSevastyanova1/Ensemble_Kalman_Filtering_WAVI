@@ -2,7 +2,7 @@
 #SBATCH --output={{ run.dir }}/model.%j.%N.out
 #SBATCH --error={{ run.dir }}/model.%j.%N.err
 #SBATCH --chdir={{ run.dir }}
-{% if run.email != "someone@example.com" %}
+{% if run.email != "example@bas.ac.uk" %}
 #SBATCH --mail-type=begin,end,fail,requeue
 #SBATCH --mail-user={{ run.email }}
 {% endif %}
@@ -33,11 +33,11 @@ echo "Number of previous iterations $ITERATION"
 ln -sf ../Manifest.toml
 ln -sf ../Project.toml
 ln -sf `realpath ../..`/shared.jl
-ln -sf `realpath ../..`/observe_sinusoid.jl
+ln -sf `realpath ../..`/exp_driver.jl
 ln -sf `realpath ../..`/run_computer_model.jl
 ln -sf `realpath ../..`/update_EKP.jl
 ln -sf `realpath ../output`
-ln -sf `realpath ../../input_data`
+ln -sf `realpath ../../exp_input_data`
 
 echo "Iteration $ITERATION Model {{ run.idx }}"
 #julia --project -e 'using Pkg; Pkg.add(PackageSpec(url="https://github.com/RJArthern/WAVI.jl.git",rev="ParallelDev"));Pkg.instantiate()'
