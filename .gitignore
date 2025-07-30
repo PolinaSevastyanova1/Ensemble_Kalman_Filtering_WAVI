@@ -29,7 +29,7 @@ __pycache__/
 
 /ensemble/E*
 /ensemble/e*
+/ensemble/output/iteration*
+/ensemble/Project.toml
+/ensemble/REPEAT
 /log*
-
-# temporarily ignore plots and ouputs
-ensemble/
