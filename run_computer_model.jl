@@ -1,4 +1,4 @@
-include("observe_sinusoid.jl")
+include("exp_driver.jl")
 
 using TOML, JLD2
 

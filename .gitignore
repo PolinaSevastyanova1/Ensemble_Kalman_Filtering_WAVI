@@ -27,5 +27,9 @@ Manifest.toml
 *.pyc
 __pycache__/
 
-/ensemble/
+/ensemble/e*
+/ensemble/E*
+/ensemble/output/iteration_*/
+/ensemble/REPEAT
+/ensemble/Project.toml
 /log*
