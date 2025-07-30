@@ -1,4 +1,4 @@
-include("observe_sinusoid.jl")
+include("exp_driver.jl")
 
 using TOML, JLD2
 
@@ -26,7 +26,7 @@ function main()
     # get parameters
     member_path = path_to_ensemble_member(output_dir, iteration, member)
     param_dict = TOML.parsefile(joinpath(member_path, "parameters.toml"))
-    names = ["weertman_c_prefactor", "glen_a_ref_prefactor", "bump_amplitude", "melt_rate_prefactor", "per_century_trend"]
+    names = ["weertman_c_prefactor", "glen_a_ref_prefactor", "bump_amplitude", "melt_rate_prefactor", "per_century_trend", "n_exponent"]
     params = get_parameter_values(param_dict, names)
 
     # get rng

@@ -29,8 +29,15 @@ Prior for the melt rate prefactor. V broad prior? Bounded below by 0.1
 """
 
 [per_century_trend]
-prior = "Parameterized(Normal(100.0,100.0))"
+prior = "Parameterized(Normal(0.0,200.0))"
 constraint = "no_constraint()"
 description = """
 Prior for the per century trend in forcing. Unconstrained and broad?
+"""
+
+[n_exponent]
+prior = "Parameterized(Normal(3.0,0.5))" 
+constraint = "no_constraint()"
+description = """
+Prior for the n parameter exponent. Between 2.5 and 3.5
 """

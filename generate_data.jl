@@ -1,4 +1,4 @@
-include("observe_sinusoid.jl")
+include("exp_driver.jl")
 
 using LinearAlgebra, Distributions, JLD2, Random
 
@@ -25,7 +25,7 @@ function main()
     #randomness
 
     # create noise
-    Γ = 1.0 * I
+    Γ = 1.0 * I #changed from 1.0 (NOT 1) for first run, 0.05 for long run, 0.001 for third run. 
     #dim_output = length(parameter_to_data_map(theta_true,data_path)) #just to get size here
     dim_output = 4 #must match size of output
     noise_dist = MvNormal(zeros(dim_output), Γ)
@@ -35,7 +35,7 @@ function main()
 
     # evaluate map with noise to create data
     # y = parameter_to_data_map(theta_true,data_path) .+ rand(rng_model, noise_dist) 
-    y = observed_mass .+ rand(rng_model, noise_dist)
+    y = observed_mass # .+ rand(rng_model, noise_dist)
 
     # save
     @save data_path y Γ rng_model
