@@ -3,7 +3,7 @@ ensemble:
   vars:
     out_dir:    ../output
     data_path:  truth.jld2
-    max_iters:  5
+    max_iters:  10
 
   pre_process:          []
   post_process: 
@@ -17,24 +17,24 @@ ensemble:
     - run_computer_model.sh.j2
     - priors.toml.j2
     - ENVS.j2
-    email:        someone@example.com
+    email:        example@bas.ac.uk
     job_file:     run_computer_model.sh
-    cluster:      medium
+    cluster:      rocky
     nodes:        1
     ntasks:       1
-    length:       00:40:00
-    maxruns:      10
-    maxjobs:      10
+    length:       01:00:00 #10 hrs too long for rocky 
+    maxruns:      100
+    maxjobs:      100
     repeat:       True
 
   batches:
-    - name:       sin_test
+    - name:       EKF17
       basedir:    ./ensemble
       pre_batch:
         - name:   check
           args:
-            cmd:  '../check_max.sh 5'
-            fail: True
+            cmd:  '../check_max.sh 10' #10 is iterations
+            fail: False
         - name:   execute
           args: 
             cmd:  'mkdir output'
@@ -49,11 +49,13 @@ ensemble:
             cmd:  'ln -s ../Project.toml'
         - name:   execute
           args:
-            cmd:  'julia --project ../generate_data.jl output truth.jld2 235487'
+            #cmd:  'julia --project ../generate_data.jl output truth.jld2 3934' #prev 235487
+            cmd: '/data/hpcdata/users/poasty/.juliaup/bin/julia --project ../generate_data.jl output truth.jld2 235487' #3934' 
             log:  True
         - name:   execute
           args:
-           cmd:  'julia --project ../initialize_EKP.jl output truth.jld2 eki.jld2 ../priors.toml 10 87653'
+           #cmd:  'julia --project ../initialize_EKP.jl output truth.jld2 eki.jld2 ../priors.toml 10 25252' #prev 87653
+           cmd: '/data/hpcdata/users/poasty/.juliaup/bin/julia --project ../initialize_EKP.jl output truth.jld2 eki.jld2 ../priors.toml 20 87653' #484'
            log:  True
 
       pre_run:    []
@@ -68,11 +70,22 @@ ensemble:
         - {}
         - {}
         - {}
+        - {}
+        - {}
+        - {}
+        - {}
+        - {}
+        - {}
+        - {}
+        - {}
+        - {}
+        - {}
       post_run:   []
       post_batch: 
         - name:   execute
           args:
-            cmd:  'julia --project ../update_EKP.jl output eki.jld2 `wc -m <REPEAT`'
+            #cmd:  'julia --project ../update_EKP.jl output eki.jld2 `wc -m <REPEAT`'
+            cmd: '/data/hpcdata/users/poasty/.juliaup/bin/julia --project ../update_EKP.jl output eki.jld2 `wc -m <REPEAT`'
             log:  True
         - name:   execute
           args:
